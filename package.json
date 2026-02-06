@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://<USERNAME>.github.io/rose-day-surprise",
+  "homepage": "https://aryanjais.github.io/vday",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
