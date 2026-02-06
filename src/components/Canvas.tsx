@@ -45,12 +45,39 @@ export const Canvas: React.FC<CanvasProps> = ({ flowers, onRemoveFlower, onMoveF
     setDraggingId(null);
   };
 
+  const handleTouchStart = (e: React.TouchEvent, id: string) => {
+    e.stopPropagation();
+    setDraggingId(id);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!draggingId) return;
+    // Prevent scrolling while dragging
+    e.preventDefault(); 
+    
+    // Get touch coordinates (use first touch point)
+    const touch = e.touches[0];
+    const rect = e.currentTarget.getBoundingClientRect();
+    
+    const x = ((touch.clientX - rect.left) / rect.width) * 100;
+    const y = ((touch.clientY - rect.top) / rect.height) * 100;
+    
+    onMoveFlower(draggingId, x, y);
+  };
+
+  const handleTouchEnd = () => {
+    setDraggingId(null);
+  };
+
   return (
     <div 
       className="bouquet-canvas"
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
     >
       <div className="stems-container">
         {/* Placeholder for stems if we want them to bunch up at the bottom */}
@@ -66,8 +93,10 @@ export const Canvas: React.FC<CanvasProps> = ({ flowers, onRemoveFlower, onMoveF
             transform: `translate(-50%, -50%) rotate(${flower.rotation}deg) scale(${flower.scale})`,
             zIndex: flower.zIndex,
             cursor: draggingId === flower.id ? 'grabbing' : 'grab',
+            touchAction: 'none', // Critical for preventing browser scroll interference
           }}
           onMouseDown={(e) => handleMouseDown(e, flower.id)}
+          onTouchStart={(e) => handleTouchStart(e, flower.id)}
           onDoubleClick={() => onRemoveFlower(flower.id)}
           title="Drag to move, Double click to remove"
         >

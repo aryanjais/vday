@@ -85,7 +85,7 @@ function App() {
           width: 100%;
           height: 100%;
           pointer-events: none; /* Let clicks pass through to canvas where needed */
-          z-index: 10;
+          z-index: 1000; /* Ensure UI is always on top of flowers */
           display: flex;
           justify-content: space-between;
           padding: 20px;
@@ -114,6 +114,8 @@ function App() {
           box-shadow: 0 4px 15px rgba(214, 36, 68, 0.4);
           transition: transform 0.2s, box-shadow 0.2s;
           font-family: var(--font-serif);
+          // margin-bottom: 350px;
+          // border:5px solid black;
         }
 
         .finish-btn:hover {
@@ -138,10 +140,19 @@ function App() {
           }
 
           .finish-container {
-            bottom: 20px;
-            right: 50%;
-            transform: translateX(50%);
+            position: fixed; /* Stick to viewport to avoid scroll issues */
+            bottom: 30px; /* More space from bottom */
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
             width: max-content;
+            z-index: 1001; /* Extra insurance */
+          }
+          
+          /* Smaller button on mobile */
+          .finish-btn {
+            padding: 12px 30px;
+            font-size: 1rem;
           }
         }
       `}</style>

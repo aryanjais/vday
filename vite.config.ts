@@ -4,5 +4,8 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/vday'
+  base: '/vday',
+  server: {
+    host: true, // or '0.0.0.0' to listen on all network interfaces
+  },
 })
