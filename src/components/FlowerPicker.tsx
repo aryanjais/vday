@@ -1,13 +1,15 @@
 import React from 'react';
 
+const BASE = import.meta.env.BASE_URL;
+
 export const FLOWERS = [
-  { id: 'rose', name: 'Red Rose', src: '/assets/red_rose.png', price: 0 },
-  { id: 'tulip', name: 'Pink Tulip', src: '/assets/pink_tulip.png', price: 0 },
-  { id: 'lily', name: 'White Lily', src: '/assets/white_lily.png', price: 0 },
-  { id: 'sunflower', name: 'Sunflower', src: '/assets/sunflower.png', price: 0 },
-  { id: 'fern', name: 'Fern', src: '/assets/fern.png', price: 0 },
-  { id: 'heliopsis', name: 'Heliopsis', src: '/assets/heliopsis.png', price: 0 },
-  { id: 'vibrant_flower', name: 'Vibrant Flower', src: '/assets/vibrant_flower.png', price: 0 },
+  { id: 'rose', name: 'Red Rose', src: `${BASE}/assets/red_rose.png`, price: 0 },
+  { id: 'tulip', name: 'Pink Tulip', src: `${BASE}/assets/pink_tulip.png`, price: 0 },
+  { id: 'lily', name: 'White Lily', src: `${BASE}/assets/white_lily.png`, price: 0 },
+  { id: 'sunflower', name: 'Sunflower', src: `${BASE}/assets/sunflower.png`, price: 0 },
+  { id: 'fern', name: 'Fern', src: `${BASE}/assets/fern.png`, price: 0 },
+  { id: 'heliopsis', name: 'Heliopsis', src: `${BASE}/assets/heliopsis.png`, price: 0 },
+  { id: 'vibrant_flower', name: 'Vibrant Flower', src: `${BASE}/assets/vibrant_flower.png`, price: 0 },
 ];
 
 interface FlowerPickerProps {
@@ -89,6 +91,50 @@ export const FlowerPicker: React.FC<FlowerPickerProps> = ({ onSelectFlower }) =>
           font-size: 0.9rem;
           color: var(--color-text);
           font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+          .flower-picker {
+            max-width: 100%;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          }
+          
+          .picker-title {
+            margin: 0;
+            white-space: nowrap;
+            font-size: 1rem;
+            margin-right: 10px;
+          }
+
+          .flower-list {
+            display: flex;
+            grid-template-columns: none;
+            overflow-x: auto;
+            gap: 10px;
+            padding-bottom: 5px; /* Space for scrollbar */
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+          }
+
+          .flower-item {
+            flex: 0 0 auto;
+            min-width: 70px;
+            padding: 5px;
+          }
+
+          .img-wrapper {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 4px;
+          }
+
+          .flower-name {
+            font-size: 0.75rem;
+            text-align: center;
+          }
         }
       `}</style>
     </div>

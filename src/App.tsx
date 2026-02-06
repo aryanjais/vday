@@ -125,6 +125,25 @@ function App() {
           /* Glassmorphism utility handled in component css mostly, 
              but sidebar positioning is here */
         }
+
+        @media (max-width: 768px) {
+          .ui-layer {
+            flex-direction: column;
+            padding: 10px;
+          }
+          
+          .sidebar {
+            width: 100%;
+            align-self: center;
+          }
+
+          .finish-container {
+            bottom: 20px;
+            right: 50%;
+            transform: translateX(50%);
+            width: max-content;
+          }
+        }
       `}</style>
     </div>
   );
