@@ -1,0 +1,46 @@
+:root {
+  --color-rose: #d62444;
+  --color-blush: #fcebd5;
+  --color-cream: #fff9f0;
+  --color-gold: #cfaa6e;
+  --color-deep-green: #2d4f3c;
+  --color-text: #4a3b32;
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background: var(--color-blush) url('/assets/background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--color-text);
+  overflow: hidden; /* For app-like feel */
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 4px;
+}
